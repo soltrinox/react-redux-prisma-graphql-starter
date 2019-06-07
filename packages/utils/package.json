@@ -1,0 +1,20 @@
+{
+  "name": "@packages/utils",
+  "version": "0.0.1",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "test": "is-ci \"test:coverage\" \"test:watch\"",
+    "test:debug": "node --inspect-brk ./node_modules/jest/bin/jest.js --runInBand",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "precommit": "lint-staged",
+    "format": "pretty-quick --pattern \"**/utils/**/*.+(js|jsx|json|yml|yaml|css|less|scss|ts|tsx|md|graphql|mdx)\""
+  },
+  "dependencies": {
+    "moment": "^2.24.0"
+  },
+  "engines": {
+    "node": ">=10.6.0"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "name": "strigoaica-maildev",
+  "version": "0.0.1",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "agathias": "^0.0.4",
+    "nodemailer": "^5.1.1",
+    "strigoaica-strategy": "^0.0.3-0"
+  }
+}

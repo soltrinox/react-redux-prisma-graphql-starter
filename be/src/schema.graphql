@@ -1,0 +1,72 @@
+# import * from '@local/prisma/generated/prisma.graphql'
+
+scalar DateTime
+
+type User {
+  id: ID!
+  name: String
+  username: String!
+  email: String!
+  verified: Boolean!
+  status: UserStatus!
+  permissions: [Permission!]!
+}
+
+type SuccessMessage {
+  message: String
+  signal: String
+}
+
+type Query {
+  # User
+  user: User
+  users(
+    where: UserWhereInput
+    orderBy: UserOrderByInput
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): [User]!
+  # Setting
+  setting(where: SettingWhereUniqueInput): Setting
+  settings(where: SettingWhereInput): [Setting]!
+}
+
+type Mutation {
+  # User
+  signup(
+    email: String!
+    password: String!
+    username: String!
+    invitation: String
+  ): User!
+  signin(email: String!, password: String!): User!
+  signout: SuccessMessage
+  requestReset(email: String!): SuccessMessage
+  resetPassword(
+    resetToken: String!
+    password: String!
+    confirmPassword: String!
+  ): User!
+  requestVerification(email: String!): SuccessMessage
+  inviteUser(email: String!): User
+  verifyUser(verificationToken: String!): SuccessMessage
+  deleteUser(id: ID!): SuccessMessage
+  updateUser(
+    id: ID!
+    name: String!
+    email: String!
+    currentPassword: String
+    newPassword: String
+    newPasswordConfirm: String
+  ): SuccessMessage
+
+  # Settings
+  updateSettings(data: [SettingUpdateManyMutationInput!]!): SuccessMessage
+}
+
+# type Subscription {
+
+# }

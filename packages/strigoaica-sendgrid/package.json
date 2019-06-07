@@ -1,0 +1,11 @@
+{
+  "name": "strigoaica-sendgrid",
+  "version": "0.0.1",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "@sendgrid/mail": "^6.3.1",
+    "agathias": "^0.0.4",
+    "strigoaica-strategy": "^0.0.3-0"
+  }
+}

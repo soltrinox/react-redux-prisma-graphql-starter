@@ -1,0 +1,9 @@
+{
+  "name": "scripts",
+  "version": "0.0.1",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "bump-version": "node bump-version.js && git add ../version.js"
+  }
+}

@@ -1,0 +1,43 @@
+enum Permission {
+  ADMIN
+  USER
+}
+
+enum SettingType {
+  String
+  Boolean
+}
+
+enum UserStatus {
+  ACTIVE
+  INACTIVE
+}
+
+type Setting {
+  id: ID! @unique @id
+  key: String! @unique
+  value: String!
+  type: SettingType
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+}
+
+type User {
+  id: ID! @unique @id
+  name: String
+  username: String! @unique
+  email: String! @unique
+  invitation: String @unique
+  password: String!
+  resetToken: String
+  resetTokenExpiry: Float
+  verificationToken: String
+  verificationTokenExpiry: Float
+  permissions: [Permission!]! @scalarList(strategy: RELATION)
+  verified: Boolean! @default(value: false)
+  status: UserStatus! @default(value: INACTIVE)
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+}
+
+

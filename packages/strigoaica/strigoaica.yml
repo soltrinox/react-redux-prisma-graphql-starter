@@ -1,0 +1,5 @@
+port: 13987
+templatePath: "./templates"
+strategies:
+  # sendgrid:
+  maildev:

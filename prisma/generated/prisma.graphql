@@ -1,0 +1,591 @@
+type AggregateSetting {
+  count: Int!
+}
+
+type AggregateUser {
+  count: Int!
+}
+
+type BatchPayload {
+  count: Long!
+}
+
+scalar DateTime
+
+scalar Long
+
+type Mutation {
+  createSetting(data: SettingCreateInput!): Setting!
+  updateSetting(
+    data: SettingUpdateInput!
+    where: SettingWhereUniqueInput!
+  ): Setting
+  updateManySettings(
+    data: SettingUpdateManyMutationInput!
+    where: SettingWhereInput
+  ): BatchPayload!
+  upsertSetting(
+    where: SettingWhereUniqueInput!
+    create: SettingCreateInput!
+    update: SettingUpdateInput!
+  ): Setting!
+  deleteSetting(where: SettingWhereUniqueInput!): Setting
+  deleteManySettings(where: SettingWhereInput): BatchPayload!
+  createUser(data: UserCreateInput!): User!
+  updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
+  updateManyUsers(
+    data: UserUpdateManyMutationInput!
+    where: UserWhereInput
+  ): BatchPayload!
+  upsertUser(
+    where: UserWhereUniqueInput!
+    create: UserCreateInput!
+    update: UserUpdateInput!
+  ): User!
+  deleteUser(where: UserWhereUniqueInput!): User
+  deleteManyUsers(where: UserWhereInput): BatchPayload!
+}
+
+enum MutationType {
+  CREATED
+  UPDATED
+  DELETED
+}
+
+interface Node {
+  id: ID!
+}
+
+type PageInfo {
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+  startCursor: String
+  endCursor: String
+}
+
+enum Permission {
+  ADMIN
+  USER
+}
+
+type Query {
+  setting(where: SettingWhereUniqueInput!): Setting
+  settings(
+    where: SettingWhereInput
+    orderBy: SettingOrderByInput
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): [Setting]!
+  settingsConnection(
+    where: SettingWhereInput
+    orderBy: SettingOrderByInput
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): SettingConnection!
+  user(where: UserWhereUniqueInput!): User
+  users(
+    where: UserWhereInput
+    orderBy: UserOrderByInput
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): [User]!
+  usersConnection(
+    where: UserWhereInput
+    orderBy: UserOrderByInput
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): UserConnection!
+  node(id: ID!): Node
+}
+
+type Setting {
+  id: ID!
+  key: String!
+  value: String!
+  type: SettingType
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type SettingConnection {
+  pageInfo: PageInfo!
+  edges: [SettingEdge]!
+  aggregate: AggregateSetting!
+}
+
+input SettingCreateInput {
+  key: String!
+  value: String!
+  type: SettingType
+}
+
+type SettingEdge {
+  node: Setting!
+  cursor: String!
+}
+
+enum SettingOrderByInput {
+  id_ASC
+  id_DESC
+  key_ASC
+  key_DESC
+  value_ASC
+  value_DESC
+  type_ASC
+  type_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
+type SettingPreviousValues {
+  id: ID!
+  key: String!
+  value: String!
+  type: SettingType
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type SettingSubscriptionPayload {
+  mutation: MutationType!
+  node: Setting
+  updatedFields: [String!]
+  previousValues: SettingPreviousValues
+}
+
+input SettingSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: SettingWhereInput
+  AND: [SettingSubscriptionWhereInput!]
+  OR: [SettingSubscriptionWhereInput!]
+  NOT: [SettingSubscriptionWhereInput!]
+}
+
+enum SettingType {
+  String
+  Boolean
+}
+
+input SettingUpdateInput {
+  key: String
+  value: String
+  type: SettingType
+}
+
+input SettingUpdateManyMutationInput {
+  key: String
+  value: String
+  type: SettingType
+}
+
+input SettingWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  key: String
+  key_not: String
+  key_in: [String!]
+  key_not_in: [String!]
+  key_lt: String
+  key_lte: String
+  key_gt: String
+  key_gte: String
+  key_contains: String
+  key_not_contains: String
+  key_starts_with: String
+  key_not_starts_with: String
+  key_ends_with: String
+  key_not_ends_with: String
+  value: String
+  value_not: String
+  value_in: [String!]
+  value_not_in: [String!]
+  value_lt: String
+  value_lte: String
+  value_gt: String
+  value_gte: String
+  value_contains: String
+  value_not_contains: String
+  value_starts_with: String
+  value_not_starts_with: String
+  value_ends_with: String
+  value_not_ends_with: String
+  type: SettingType
+  type_not: SettingType
+  type_in: [SettingType!]
+  type_not_in: [SettingType!]
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  AND: [SettingWhereInput!]
+  OR: [SettingWhereInput!]
+  NOT: [SettingWhereInput!]
+}
+
+input SettingWhereUniqueInput {
+  id: ID
+  key: String
+}
+
+type Subscription {
+  setting(where: SettingSubscriptionWhereInput): SettingSubscriptionPayload
+  user(where: UserSubscriptionWhereInput): UserSubscriptionPayload
+}
+
+type User {
+  id: ID!
+  name: String
+  username: String!
+  email: String!
+  invitation: String
+  password: String!
+  resetToken: String
+  resetTokenExpiry: Float
+  verificationToken: String
+  verificationTokenExpiry: Float
+  permissions: [Permission!]!
+  verified: Boolean!
+  status: UserStatus!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type UserConnection {
+  pageInfo: PageInfo!
+  edges: [UserEdge]!
+  aggregate: AggregateUser!
+}
+
+input UserCreateInput {
+  name: String
+  username: String!
+  email: String!
+  invitation: String
+  password: String!
+  resetToken: String
+  resetTokenExpiry: Float
+  verificationToken: String
+  verificationTokenExpiry: Float
+  permissions: UserCreatepermissionsInput
+  verified: Boolean
+  status: UserStatus
+}
+
+input UserCreatepermissionsInput {
+  set: [Permission!]
+}
+
+type UserEdge {
+  node: User!
+  cursor: String!
+}
+
+enum UserOrderByInput {
+  id_ASC
+  id_DESC
+  name_ASC
+  name_DESC
+  username_ASC
+  username_DESC
+  email_ASC
+  email_DESC
+  invitation_ASC
+  invitation_DESC
+  password_ASC
+  password_DESC
+  resetToken_ASC
+  resetToken_DESC
+  resetTokenExpiry_ASC
+  resetTokenExpiry_DESC
+  verificationToken_ASC
+  verificationToken_DESC
+  verificationTokenExpiry_ASC
+  verificationTokenExpiry_DESC
+  verified_ASC
+  verified_DESC
+  status_ASC
+  status_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
+type UserPreviousValues {
+  id: ID!
+  name: String
+  username: String!
+  email: String!
+  invitation: String
+  password: String!
+  resetToken: String
+  resetTokenExpiry: Float
+  verificationToken: String
+  verificationTokenExpiry: Float
+  permissions: [Permission!]!
+  verified: Boolean!
+  status: UserStatus!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+enum UserStatus {
+  ACTIVE
+  INACTIVE
+}
+
+type UserSubscriptionPayload {
+  mutation: MutationType!
+  node: User
+  updatedFields: [String!]
+  previousValues: UserPreviousValues
+}
+
+input UserSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: UserWhereInput
+  AND: [UserSubscriptionWhereInput!]
+  OR: [UserSubscriptionWhereInput!]
+  NOT: [UserSubscriptionWhereInput!]
+}
+
+input UserUpdateInput {
+  name: String
+  username: String
+  email: String
+  invitation: String
+  password: String
+  resetToken: String
+  resetTokenExpiry: Float
+  verificationToken: String
+  verificationTokenExpiry: Float
+  permissions: UserUpdatepermissionsInput
+  verified: Boolean
+  status: UserStatus
+}
+
+input UserUpdateManyMutationInput {
+  name: String
+  username: String
+  email: String
+  invitation: String
+  password: String
+  resetToken: String
+  resetTokenExpiry: Float
+  verificationToken: String
+  verificationTokenExpiry: Float
+  permissions: UserUpdatepermissionsInput
+  verified: Boolean
+  status: UserStatus
+}
+
+input UserUpdatepermissionsInput {
+  set: [Permission!]
+}
+
+input UserWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  username: String
+  username_not: String
+  username_in: [String!]
+  username_not_in: [String!]
+  username_lt: String
+  username_lte: String
+  username_gt: String
+  username_gte: String
+  username_contains: String
+  username_not_contains: String
+  username_starts_with: String
+  username_not_starts_with: String
+  username_ends_with: String
+  username_not_ends_with: String
+  email: String
+  email_not: String
+  email_in: [String!]
+  email_not_in: [String!]
+  email_lt: String
+  email_lte: String
+  email_gt: String
+  email_gte: String
+  email_contains: String
+  email_not_contains: String
+  email_starts_with: String
+  email_not_starts_with: String
+  email_ends_with: String
+  email_not_ends_with: String
+  invitation: String
+  invitation_not: String
+  invitation_in: [String!]
+  invitation_not_in: [String!]
+  invitation_lt: String
+  invitation_lte: String
+  invitation_gt: String
+  invitation_gte: String
+  invitation_contains: String
+  invitation_not_contains: String
+  invitation_starts_with: String
+  invitation_not_starts_with: String
+  invitation_ends_with: String
+  invitation_not_ends_with: String
+  password: String
+  password_not: String
+  password_in: [String!]
+  password_not_in: [String!]
+  password_lt: String
+  password_lte: String
+  password_gt: String
+  password_gte: String
+  password_contains: String
+  password_not_contains: String
+  password_starts_with: String
+  password_not_starts_with: String
+  password_ends_with: String
+  password_not_ends_with: String
+  resetToken: String
+  resetToken_not: String
+  resetToken_in: [String!]
+  resetToken_not_in: [String!]
+  resetToken_lt: String
+  resetToken_lte: String
+  resetToken_gt: String
+  resetToken_gte: String
+  resetToken_contains: String
+  resetToken_not_contains: String
+  resetToken_starts_with: String
+  resetToken_not_starts_with: String
+  resetToken_ends_with: String
+  resetToken_not_ends_with: String
+  resetTokenExpiry: Float
+  resetTokenExpiry_not: Float
+  resetTokenExpiry_in: [Float!]
+  resetTokenExpiry_not_in: [Float!]
+  resetTokenExpiry_lt: Float
+  resetTokenExpiry_lte: Float
+  resetTokenExpiry_gt: Float
+  resetTokenExpiry_gte: Float
+  verificationToken: String
+  verificationToken_not: String
+  verificationToken_in: [String!]
+  verificationToken_not_in: [String!]
+  verificationToken_lt: String
+  verificationToken_lte: String
+  verificationToken_gt: String
+  verificationToken_gte: String
+  verificationToken_contains: String
+  verificationToken_not_contains: String
+  verificationToken_starts_with: String
+  verificationToken_not_starts_with: String
+  verificationToken_ends_with: String
+  verificationToken_not_ends_with: String
+  verificationTokenExpiry: Float
+  verificationTokenExpiry_not: Float
+  verificationTokenExpiry_in: [Float!]
+  verificationTokenExpiry_not_in: [Float!]
+  verificationTokenExpiry_lt: Float
+  verificationTokenExpiry_lte: Float
+  verificationTokenExpiry_gt: Float
+  verificationTokenExpiry_gte: Float
+  verified: Boolean
+  verified_not: Boolean
+  status: UserStatus
+  status_not: UserStatus
+  status_in: [UserStatus!]
+  status_not_in: [UserStatus!]
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  AND: [UserWhereInput!]
+  OR: [UserWhereInput!]
+  NOT: [UserWhereInput!]
+}
+
+input UserWhereUniqueInput {
+  id: ID
+  username: String
+  email: String
+  invitation: String
+}

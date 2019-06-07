@@ -1,0 +1,76 @@
+# Sample queries for playing with playground
+
+#user
+mutation signup {
+  signup(
+    email: "test2@gmail.com"
+    username: "kostis1"
+    password: "4321"
+    invitation: "1"
+  ) {
+    name
+    username
+  }
+}
+
+mutation signinAdmin {
+  signin(email: "admin@test.com", password: "12345") {
+    name
+  }
+}
+
+mutation signinUser {
+  signin(email: "test2@gmail.com", password: "4321") {
+    username
+  }
+}
+
+mutation verifyUser {
+  verifyUser(verificationToken: "") {
+    message
+  }
+}
+
+mutation signout {
+  signout {
+    message
+  }
+}
+
+query user {
+  user {
+    id
+    name
+    username
+    email
+    status
+    permissions
+  }
+}
+query users {
+  users {
+    id
+    name
+    username
+    email
+    status
+    permissions
+  }
+}
+query settings {
+  settings {
+    key
+    value
+    type
+  }
+}
+mutation updateSettings {
+  updateSettings(
+    data: [
+      { key: "invitationsOnly", value: "false" }
+      { key: "registrationsEnabled", value: "true" }
+    ]
+  ) {
+    message
+  }
+}

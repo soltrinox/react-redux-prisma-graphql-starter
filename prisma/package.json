@@ -1,0 +1,25 @@
+{
+  "name": "@local/prisma",
+  "version": "0.0.1",
+  "main": "client.js",
+  "license": "MIT",
+  "scripts": {
+    "deploy:dev": "NODE_ENV=development prisma deploy --env-file ../packages/config/development.env",
+    "deploy:prod": "NODE_ENV=production prisma deploy --env-file ../packages/config/production.env",
+    "generate:dev": "NODE_ENV=development prisma generate --env-file ../packages/config/development.env",
+    "generate:prod": "NODE_ENV=production prisma generate --env-file ../packages/config/production.env",
+    "reset:seed:prod": "NODE_ENV=production prisma reset --env-file ../packages/config/production.env && yarn seed:prod",
+    "reset:seed": "NODE_ENV=development prisma reset --env-file ../packages/config/development.env && yarn seed",
+    "reset": "NODE_ENV=development prisma reset --env-file ../packages/config/development.env",
+    "seed:prod": "NODE_ENV=production prisma seed --env-file ../packages/config/production.env",
+    "seed": "NODE_ENV=development prisma seed --env-file ../packages/config/development.env",
+    "token:prod": "NODE_ENV=production prisma token --env-file ../packages/config/production.env",
+    "token": "NODE_ENV=development prisma token --env-file ../packages/config/development.env"
+  },
+  "dependencies": {
+    "dotenv": "^7.0.0",
+    "faker": "^4.1.0",
+    "moment": "^2.24.0",
+    "prisma-binding": "^2.3.4"
+  }
+}

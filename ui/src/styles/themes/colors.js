@@ -1,0 +1,21 @@
+export default {
+  red: '#f5222d',
+  red_2: '#ee4466e3',
+  // blue: '#1890ff',
+  // blue_1: '#0d80e5',
+  // blue_2: '#40a9ff',
+  // darkBlue: '#001429',
+  // darkBlue2: '#486380db',
+  green: '#52c41a',
+  green_1: '#6fef30',
+  yellow: '#ffeb7f',
+  orange: '#f96f1d',
+  // yellow: '#faad14',
+  // black: 'rgba(0, 0, 0, 0.8)',
+  // darkGray: '#23232b',
+  dark_gray_1: '#333D44',
+  dark_gray_2: '#38424B',
+  dark_gray_3: '#43505A',
+  card_grey: '#49545f',
+  gray_1: '#e0e0e0'
+}
