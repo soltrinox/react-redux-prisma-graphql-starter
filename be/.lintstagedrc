@@ -1,11 +1,9 @@
 {
-    "linters": {
-        "*.js": [
-            "eslint",
-            "cross-env NODE_ENV=test jest --bail --findRelatedTests"
-        ],
-        "**/*.+(js|jsx|json|yml|yaml|css|less|scss|ts|tsx|md|graphql|mdx)": [
-            "pretty-quick --staged"
-        ]
-    }
+    "*.js": [
+        "eslint",
+        "cross-env NODE_ENV=test jest --bail --findRelatedTests"
+    ],
+    "**/*.+(js|jsx|json|yml|yaml|css|less|scss|ts|tsx|md|graphql|mdx)": [
+        "pretty-quick --staged"
+    ] 
 }
