@@ -1,4 +1,3 @@
-const FlowBabelWebpackPlugin = require('flow-babel-webpack-plugin')
 import paths from './paths'
 
 module.exports = {
@@ -30,5 +29,5 @@ module.exports = {
     clientLogLevel: 'error'
   },
   devtool: 'cheap-eval-source-map',
-  plugins: [new FlowBabelWebpackPlugin()]
+  plugins: []
 }

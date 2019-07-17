@@ -13,13 +13,10 @@
     "test:watch": "jest --watch --verbose=false",
     "test:coverage": "jest --coverage",
     "lint": "eslint ./",
-    "flow": "flow",
-    "flow:typed": "flow-typed",
     "format": "pretty-quick --pattern \"**/poltrex-ui/**/*.+(js|jsx|json|yml|yaml|css|less|scss|ts|tsx|md|graphql|mdx)\"",
     "eslint-check": "eslint --print-config . | eslint-config-prettier-check",
-    "validate": "yarn flow",
-    "setup": "yarn install && yarn validate",
-    "precommit": "lint-staged && yarn validate"
+    "setup": "yarn install",
+    "precommit": "lint-staged"
   },
   "author": "",
   "license": "ISC",
@@ -82,8 +79,6 @@
     "subscriptions-transport-ws": "^0.9.16"
   },
   "devDependencies": {
-    "@babel/register": "^7.4.4",
-    "flow-bin": "^0.102.0",
-    "flow-typed": "^2.6.0"
+    "@babel/register": "^7.4.4"
   }
 }
