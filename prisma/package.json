@@ -17,9 +17,9 @@
     "token": "NODE_ENV=development prisma token --env-file ../packages/config/development.env"
   },
   "dependencies": {
-    "dotenv": "^7.0.0",
+    "dotenv": "^8.0.0",
     "faker": "^4.1.0",
     "moment": "^2.24.0",
-    "prisma-binding": "^2.3.4"
+    "prisma-binding": "^2.3.15"
   }
 }

@@ -12,11 +12,33 @@ module.exports = {
         '@babel/preset-react'
       ],
       plugins: [
+        'add-react-displayname',
         'react-hot-loader/babel',
         '@babel/plugin-syntax-dynamic-import',
         '@babel/plugin-proposal-class-properties',
         '@babel/plugin-proposal-object-rest-spread',
-        'dynamic-import-node',
+        'dynamic-import-node'
+      ]
+    },
+    development: {
+      presets: [
+        [
+          '@babel/preset-env',
+          {
+            targets: ['last 2 versions', 'not dead', 'not < 2%', 'not ie 11'],
+            useBuiltIns: 'entry',
+            corejs: 3,
+            modules: 'auto'
+          }
+        ],
+        '@babel/preset-react'
+      ],
+      plugins: [
+        'add-react-displayname',
+        'react-hot-loader/babel',
+        '@babel/plugin-syntax-dynamic-import',
+        '@babel/plugin-proposal-class-properties',
+        '@babel/plugin-proposal-object-rest-spread',
         [
           'import',
           {
@@ -26,45 +48,21 @@ module.exports = {
         ]
       ]
     },
-    development: {
-      presets: [
-        [
-          '@babel/preset-env',
-          {
-            useBuiltIns: 'entry',
-            modules: 'auto'
-          }
-        ],
-        '@babel/preset-react',
-        '@babel/preset-flow'
-      ],
-      plugins: [
-        'react-hot-loader/babel',
-        '@babel/plugin-syntax-dynamic-import',
-        '@babel/plugin-proposal-class-properties',
-        '@babel/plugin-proposal-object-rest-spread',
-        [
-          'import',
-          {
-            libraryName: 'antd',
-            style: true
-          }
-        ],
-        '@babel/plugin-transform-flow-comments'
-      ]
-    },
     production: {
       presets: [
         [
           '@babel/preset-env',
           {
+            targets: ['last 2 versions', 'not dead', 'not < 2%', 'not ie 11'],
             useBuiltIns: 'entry',
-            modules: 'auto'
+            corejs: 3
+            // modules: 'auto'
           }
         ],
         '@babel/preset-react'
       ],
       plugins: [
+        'add-react-displayname',
         'react-hot-loader/babel',
         '@babel/plugin-syntax-dynamic-import',
         '@babel/plugin-proposal-class-properties',

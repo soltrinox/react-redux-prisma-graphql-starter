@@ -5,7 +5,7 @@
   "license": "MIT",
   "dependencies": {
     "agathias": "^0.0.4",
-    "nodemailer": "^5.1.1",
+    "nodemailer": "^6.3.0",
     "strigoaica-strategy": "^0.0.3-0"
   }
 }

@@ -1,6 +1,8 @@
+import 'core-js/stable'
+import 'regenerator-runtime/runtime'
+
 import React from 'react'
 import ReactDOM from 'react-dom'
-import '@babel/polyfill'
 import 'moment-countdown'
 
 import DefaultErrorBoundary from './DefaultErrorBoundary'

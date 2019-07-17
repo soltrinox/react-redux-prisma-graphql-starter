@@ -1,4 +1,4 @@
-import createHistory from 'history/createBrowserHistory'
+import {createBrowserHistory} from 'history'
 import {createReduxHistoryContext} from 'redux-first-history'
 
 export const {
@@ -6,6 +6,6 @@ export const {
   routerMiddleware,
   routerReducer
 } = createReduxHistoryContext({
-  history: createHistory(),
+  history: createBrowserHistory(),
   reduxTravelling: true
 })
